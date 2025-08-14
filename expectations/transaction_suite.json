@@ -1,0 +1,42 @@
+{
+  "expectation_suite_name": "transaction_suite",
+  "ge_cloud_id": null,
+  "meta": {
+    "great_expectations_version": "0.18.10"
+  },
+  "expectations": [
+    {
+      "kwargs": {
+        "column": "CustomerID"
+      },
+      "expectation_type": "expect_column_values_to_not_be_null",
+      "meta": {}
+    },
+    {
+      "kwargs": {
+        "column": "Amount",
+        "min_value": 0
+      },
+      "expectation_type": "expect_column_values_to_be_greater_than",
+      "meta": {}
+    },
+    {
+      "kwargs": {
+        "column": "Quantity",
+        "min_value": 0
+      },
+      "expectation_type": "expect_column_values_to_be_greater_than",
+      "meta": {}
+    },
+    {
+      "kwargs": {
+        "column": "TransactionDate",
+        "min_value": "2023-01-01",
+        "max_value": "2025-12-31"
+      },
+      "expectation_type": "expect_column_values_to_be_between",
+      "meta": {}
+    }
+  ],
+  "data_asset_type": null
+}

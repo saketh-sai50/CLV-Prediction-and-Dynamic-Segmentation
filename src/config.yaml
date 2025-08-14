@@ -1,0 +1,52 @@
+# ------------------
+# Data & I/O Paths
+# ------------------
+data:
+  raw_path: "data/raw/online_retail.csv"
+  processed_path: "data/processed/features.csv"
+  watermark_path: "data/processed/last_run_watermark.txt"
+  great_expectations_suite: "expectations/transaction_suite.json"
+
+models:
+  clv_model_name: "production-clv-predictor"
+  segmentation_model_name: "production-customer-segmenter"
+
+# ------------------
+# Feature Engineering & Time Split
+# ------------------
+time_split:
+  # Defines the date for splitting data into training and validation sets
+  # In a real scenario, this would be updated periodically.
+  validation_start_date: "2023-11-01"
+
+# ------------------
+# Model Parameters
+# ------------------
+mlflow:
+  tracking_uri: "file:./mlflow_runs"
+  experiment_name: "CLV_Prediction_System"
+
+regression_params:
+  # Hyperparameters for the LightGBM CLV prediction model
+  model_type: "LightGBM"
+  objective: "regression_l1"
+  metric: "rmse"
+  n_estimators: 200
+  learning_rate: 0.05
+  num_leaves: 31
+  max_depth: 8
+  random_state: 42
+  n_jobs: -1
+  colsample_bytree: 0.8
+
+segmentation_params:
+  # Parameters for clustering models
+  n_clusters_range: [3, 4, 5] # Range to test for K-Means and GMM
+  random_state: 42
+
+# ------------------
+# Reproducibility
+# ------------------
+seeds:
+  data_generation_seed: 42
+  model_training_seed: 42
